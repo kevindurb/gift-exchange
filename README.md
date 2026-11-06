@@ -91,8 +91,9 @@ workflow cannot enable Pages itself because that requires a token other than the
 automatic `GITHUB_TOKEN`.
 
 To roll back, re-run a previous successful workflow run; it republishes that
-run's files. GitHub Pages caches responses for up to ten minutes, so a fresh
-deploy can take a few minutes to appear.
+run's files. If GitHub reports an in-progress deployment, wait for the previous
+one to settle and re-run. GitHub Pages caches responses for up to ten minutes,
+so a fresh deploy can take a few minutes to appear.
 
 ## License
 

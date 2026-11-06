@@ -180,6 +180,13 @@ does not affect `app-runtime`.
 - **A new runtime file is forgotten in the allowlist** → the site 404s on it.
   Mitigation: keep the list adjacent to the copy step with a comment, and note
   the list in the README deployment section.
+- **A new deploy can be rejected while Pages is still finalizing the previous
+  one** → the job-level `pages` group serializes deploy jobs, but Pages' CDN
+  purge can outlast the job, so `deploy-pages` may fail with "Deployment request
+  failed ... due to in progress deployment". Recovery is to wait for the
+  previous deployment to settle and re-run; if the Pages deployment is stuck in
+  `purging_cdn`, cancel that deployment through the Pages deployments API
+  first. A rapid pair of pushes may therefore need one retry.
 - **Only the engine suite is gated; browser behaviour stays manual** → the
   hosted URL makes manual checks easier, and automating them would add a
   dependency the project avoids. Accepted, with no test additions in scope.
