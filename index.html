@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gift Exchange</title>
+    <meta
+      name="description"
+      content="Turn a list of names into a Secret Santa assignment where nobody is paired with just one other person."
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <h1>Gift Exchange</h1>
+        <p class="tagline">
+          Enter at least three names and generate a Secret Santa assignment.
+          Nobody gives to themselves, and nobody is stuck in a two-person pair.
+        </p>
+      </header>
+
+      <form id="names-form" class="names-form" novalidate>
+        <label for="names">Participants, one per line</label>
+        <textarea
+          id="names"
+          name="names"
+          rows="10"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="names-hint"
+        ></textarea>
+        <p id="names-hint" class="hint">
+          Blank lines are ignored. Duplicate names are rejected so every
+          recipient is unambiguous.
+        </p>
+        <button type="submit">Generate assignment</button>
+      </form>
+
+      <p
+        id="status"
+        class="status"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></p>
+
+      <section
+        id="result"
+        class="result"
+        aria-labelledby="result-heading"
+        hidden
+      >
+        <h2 id="result-heading" class="result-heading" tabindex="-1">
+          Your assignment
+        </h2>
+        <p class="hint">
+          Hand the page around and reveal one person at a time, or show
+          everyone's recipient when you are organising.
+        </p>
+
+        <div class="controls">
+          <button type="button" id="show-all" aria-pressed="false">
+            Show all recipients
+          </button>
+          <button type="button" id="copy" class="secondary">
+            Copy list
+          </button>
+          <button type="button" id="print" class="secondary">Print</button>
+        </div>
+
+        <ul id="assignment-list" class="assignment-list" role="list"></ul>
+
+        <textarea
+          id="manual-copy"
+          class="manual-copy"
+          rows="8"
+          readonly
+          hidden
+          aria-label="Assignment text for manual copying"
+        ></textarea>
+      </section>
+
+      <noscript>
+        <p class="status error">
+          This app needs JavaScript enabled to generate an assignment.
+        </p>
+      </noscript>
+    </main>
+
+    <script defer src="assignment.js"></script>
+    <script defer src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,297 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f5f3ee;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #5f6368;
+  --border: #c9c6bf;
+  --accent: #8b1e3f;
+  --accent-contrast: #ffffff;
+  --accent-text: #8b1e3f;
+  --focus: #1a5fd0;
+  --error: #a51c14;
+  --warning: #7a4b00;
+  --success: #1e6b3a;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17181b;
+    --surface: #22242a;
+    --text: #f1f0ec;
+    --muted: #b7b8be;
+    --border: #4b4d56;
+    --accent: #b8435e;
+    --accent-contrast: #ffffff;
+    --accent-text: #f3a9ba;
+    --focus: #8ab4f8;
+    --error: #ff8a80;
+    --warning: #ffd27a;
+    --success: #8bd5a5;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+}
+
+.app {
+  width: min(100% - 2rem, 46rem);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.tagline {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+}
+
+.names-form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 12rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+textarea:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  cursor: pointer;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+.hint {
+  margin: 0.5rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.status {
+  min-height: 1.5rem;
+  margin: 0.75rem 0;
+  font-weight: 700;
+}
+
+.status.error {
+  color: var(--error);
+}
+
+.status.warning {
+  color: var(--warning);
+}
+
+.status.success {
+  color: var(--success);
+}
+
+.result {
+  margin-top: 1.5rem;
+}
+
+.result-heading {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.assignment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.assignment-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-wrap: anywhere;
+}
+
+.reveal {
+  padding: 0.25rem 0.7rem;
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.gives-to {
+  color: var(--muted);
+}
+
+.recipient {
+  font-weight: 700;
+  color: var(--accent-text);
+}
+
+.placeholder {
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+.recipient:not([hidden]) + .placeholder {
+  display: none;
+}
+
+.manual-copy {
+  margin-top: 1rem;
+}
+
+@media (max-width: 30rem) {
+  .app {
+    width: min(100% - 1.25rem, 46rem);
+    padding-top: 1.25rem;
+  }
+
+  .controls button {
+    flex: 1 1 100%;
+  }
+
+  .assignment-row {
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .app {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 0 3rem;
+  }
+
+  .tagline,
+  .names-form,
+  .status,
+  .controls,
+  .hint,
+  .manual-copy {
+    display: none !important;
+  }
+
+  .result {
+    margin: 0;
+  }
+
+  .assignment-list {
+    display: block;
+  }
+
+  .assignment-row {
+    display: block;
+    padding: 0.35rem 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .reveal {
+    padding: 0;
+    background: none;
+    border: 0;
+    color: #000000;
+    font-weight: 700;
+  }
+
+  .gives-to,
+  .recipient,
+  .placeholder {
+    color: #000000;
+  }
+
+  .recipient[hidden] {
+    display: inline !important;
+  }
+
+  .placeholder {
+    display: none !important;
+  }
+}
