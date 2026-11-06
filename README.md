@@ -14,26 +14,29 @@ tracking, and no network calls.
 
 ## Status
 
-Working. The app is a static page with a pure assignment engine, browser tests
-for the engine, and a print stylesheet for handing out paper slips.
+Working, and hosted at <https://kevindurb.github.io/gift-exchange/>. The app is
+a static page with a pure assignment engine, tests for the engine, and a print
+stylesheet for handing out paper slips.
 
 ## Files
 
 ```
 gift-exchange/
-  index.html              # single page, markup only
-  styles.css              # vanilla CSS, light/dark and print styles
-  assignment.js           # pure assignment logic, no DOM access
-  app.js                  # DOM wiring: input, reveal, copy, print
+  index.html               # single page, markup only
+  styles.css               # vanilla CSS, light/dark and print styles
+  assignment.js            # pure assignment logic, no DOM access
+  app.js                   # DOM wiring: input, reveal, copy, print
   tests/assignment.test.js # node:test suite for the engine
-  requirements.md         # spec and algorithm notes
+  .github/workflows/ci.yml # test gate and GitHub Pages deploy
+  requirements.md          # spec and algorithm notes
   README.md
 ```
 
 ## Usage
 
-Open `index.html` directly in a current browser. It works from `file://`
-because both scripts are plain `<script defer>` tags, not modules.
+Open <https://kevindurb.github.io/gift-exchange/>, or open `index.html`
+directly in a current browser. It works from `file://` because both scripts are
+plain `<script defer>` tags, not modules.
 
 Or serve the folder with any static server:
 
@@ -71,6 +74,25 @@ The suite covers input normalisation, duplicate rejection, infeasible
 participant counts, the three-person warning, 10,000 generated assignments for
 each size from 4 to 30, the six valid four-person assignments, retry limits,
 and tamper detection.
+
+## Deployment
+
+Pushes to `main` run the test suite and then publish to GitHub Pages at
+<https://kevindurb.github.io/gift-exchange/>. Pull requests and other branches
+run the same tests but never publish.
+
+The site is assembled from exactly four files — `index.html`, `styles.css`,
+`assignment.js`, and `app.js` — so repository docs, OpenSpec artifacts, and
+tests are not served. Adding a runtime asset means adding it to the copy step in
+[`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
+
+Pages is configured with **Source: GitHub Actions** (Settings → Pages). The
+workflow cannot enable Pages itself because that requires a token other than the
+automatic `GITHUB_TOKEN`.
+
+To roll back, re-run a previous successful workflow run; it republishes that
+run's files. GitHub Pages caches responses for up to ten minutes, so a fresh
+deploy can take a few minutes to appear.
 
 ## License
 
