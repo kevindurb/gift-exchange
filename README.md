@@ -92,8 +92,10 @@ automatic `GITHUB_TOKEN`.
 
 To roll back, re-run a previous successful workflow run; it republishes that
 run's files. If GitHub reports an in-progress deployment, wait for the previous
-one to settle and re-run. GitHub Pages caches responses for up to ten minutes,
-so a fresh deploy can take a few minutes to appear.
+one to settle and re-run. If the re-run is rejected outright because a Pages
+deployment is stuck or was cancelled, revert the commit and push instead.
+GitHub Pages caches responses for up to ten minutes, so a fresh deploy can take
+a few minutes to appear.
 
 ## License
 

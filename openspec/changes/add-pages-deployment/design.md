@@ -186,7 +186,10 @@ does not affect `app-runtime`.
   failed ... due to in progress deployment". Recovery is to wait for the
   previous deployment to settle and re-run; if the Pages deployment is stuck in
   `purging_cdn`, cancel that deployment through the Pages deployments API
-  first. A rapid pair of pushes may therefore need one retry.
+  first. Cancelling a build version is permanent — Pages will not deploy that
+  SHA again — so when a re-run is rejected, the reliable rollback is to revert
+  the commit and push a new one. A rapid pair of pushes may therefore need one
+  retry.
 - **Only the engine suite is gated; browser behaviour stays manual** → the
   hosted URL makes manual checks easier, and automating them would add a
   dependency the project avoids. Accepted, with no test additions in scope.
