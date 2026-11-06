@@ -6,7 +6,7 @@
 
 ## 2. Workflow and test gate
 
-- [x] 2.1 Create `.github/workflows/ci.yml` with the workflow name, triggers (`push` to `main`, `pull_request`, `workflow_dispatch`), top-level `permissions: contents: read`, and workflow-level concurrency (`group: ${{ github.workflow }}-${{ github.ref }}`, cancelling only pull-request runs), and verify the file parses with `yq '.' .github/workflows/ci.yml`.
+- [x] 2.1 Create `.github/workflows/ci.yml` with the workflow name, triggers (`push` on all branches, `pull_request`, `workflow_dispatch`), top-level `permissions: contents: read`, and workflow-level concurrency (`group: ${{ github.workflow }}-${{ github.ref }}`, cancelling only pull-request runs), and verify the file parses with `yq '.' .github/workflows/ci.yml`.
 - [ ] 2.2 Add the `test` job using `actions/checkout@v7`, `actions/setup-node@v7` with `node-version: 26` and no `cache` input, then `node --test tests/`; verify the job passes on the implementation branch and that `gh api repos/kevindurb/gift-exchange/deployments --jq 'length'` is unchanged, proving branch runs publish nothing.
 
 ## 3. Package and deploy

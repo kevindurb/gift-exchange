@@ -83,14 +83,17 @@ that also checks out the repository, for no benefit at this size.
 
 ### D3: Triggers and the deploy condition
 
-Triggers are `push` to `main`, `pull_request`, and `workflow_dispatch`. There is
-no `paths-ignore`: the suite takes four seconds, and skipping docs-only changes
-would leave a required status check permanently pending on such pull requests if
-branch protection is added later.
+Triggers are every branch push (`branches: ["**"]`), `pull_request`, and
+`workflow_dispatch`. Branch pushes must run the tests — the "publication only
+from the default branch" requirement is about where a deploy may happen, not
+about when tests run, and a trigger filtered to `main` would leave feature
+branches untested. There is no `paths-ignore`: the suite takes four seconds, and
+skipping docs-only changes would leave a required status check permanently
+pending on such pull requests if branch protection is added later.
 
-The `package` and `deploy` jobs are additionally guarded by
-`github.ref == 'refs/heads/main'`, so a manual dispatch from another branch can
-run tests but cannot publish that branch.
+The `package` and `deploy` jobs are guarded by `github.ref == 'refs/heads/main'`,
+so pushes to other branches and manual dispatches from them run tests but cannot
+publish.
 
 ### D4: Two concurrency scopes
 
