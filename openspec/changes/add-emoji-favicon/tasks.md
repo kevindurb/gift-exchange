@@ -13,5 +13,5 @@
 
 ## 3. Verify the published site
 
-- [ ] 3.1 After the change reaches `main` and the Pages workflow succeeds, open <https://kevindurb.github.io/gift-exchange/> (allowing for the documented cache delay) and verify the browser tab shows the gift emoji favicon.
-- [ ] 3.2 Verify the deploy published the updated `index.html` unchanged by comparing `curl -sS https://kevindurb.github.io/gift-exchange/ | grep -o 'rel="icon" href="[^"]*"'` with the local `index.html` value; the two match.
+- [x] 3.1 After the change reaches `main` and the Pages workflow succeeds, open <https://kevindurb.github.io/gift-exchange/> (allowing for the documented cache delay) and verify the browser tab shows the gift emoji favicon.
+- [x] 3.2 Verify the deploy published the updated `index.html` unchanged by comparing `curl -sS https://kevindurb.github.io/gift-exchange/ | grep -o 'rel="icon" href="[^"]*"'` with the local `index.html` value; the two match.
