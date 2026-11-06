@@ -24,4 +24,4 @@
 - [x] 5.2 Verify publication is unmodified by comparing `curl -sS https://kevindurb.github.io/gift-exchange/assignment.js | sha256sum` with `sha256sum assignment.js` at the deployed commit; the digests match.
 - [x] 5.3 Verify the test gate on a scratch branch by adding a temporary failing test, pushing the branch, and confirming the `test` job fails while `package` and `deploy` are skipped and no deployment is added; then delete the branch and confirm the temporary failing test was never merged.
 - [x] 5.4 Verify manual publication with `gh workflow run ci.yml --ref main`, watching the run to confirm tests pass and a new deployment is recorded.
-- [ ] 5.5 Verify rollback by re-running a previous successful run with `gh run rerun <run-id>`, confirming a new deployment is recorded for that run's commit and the site still serves successfully.
+- [x] 5.5 Verify rollback by re-running a previous successful run with `gh run rerun <run-id>`, confirming a new deployment is recorded for that run's commit and the site still serves successfully.
